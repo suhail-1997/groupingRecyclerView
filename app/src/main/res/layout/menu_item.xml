@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_category"
+        android:text="Starter"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:padding="8dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="Biryani"
+            android:id="@+id/menu_name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:id="@+id/add"
+            android:background="@color/white"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+</LinearLayout>
