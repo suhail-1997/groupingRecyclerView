@@ -59,166 +59,132 @@ public class MainActivity extends AppCompatActivity {
     {
         progressBar.setVisibility(View.VISIBLE);
 
-        String json = "{\"data\":[{\"subcategoryid\":1,\"categoryname\":\"starter\",\"menuid\":1,\"name\":\"idli\",\"price\":50,\"type\":\"veg\"},{\"subcategoryid\":1,\"categoryname\":\"starter\",\"menuid\":2,\"name\":\"upma\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":1,\"categoryname\":\"starter\",\"menuid\":9,\"name\":\"masala upma\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":1,\"categoryname\":\"starter\",\"menuid\":10,\"name\":\"vada\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":1,\"categoryname\":\"starter\",\"menuid\":11,\"name\":\"taco\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":2,\"categoryname\":\"liquids\",\"menuid\":3,\"name\":\"lemon juice\",\"price\":10,\"type\":\"veg\"},{\"subcategoryid\":2,\"categoryname\":\"liquids\",\"menuid\":4,\"name\":\"tea\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":3,\"categoryname\":\"main course\",\"menuid\":5,\"name\":\"dosa\",\"price\":25,\"type\":\"veg\"},{\"subcategoryid\":3,\"categoryname\":\"main course\",\"menuid\":6,\"name\":\"masala dosa\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":3,\"categoryname\":\"main course\",\"menuid\":7,\"name\":\"masala upma dosa\",\"price\":30,\"type\":\"veg\"},{\"subcategoryid\":4,\"categoryname\":\"desert\",\"menuid\":7,\"name\":\"curd\",\"price\":10,\"type\":\"veg\"},{\"subcategoryid\":4,\"categoryname\":\"desert\",\"menuid\":8,\"name\":\"lassi\",\"price\":20,\"type\":\"veg\"}],\"fullError\":null,\"message\":\"success\"}";
-
-        try {
-            JSONObject response = new JSONObject(json);
-            JSONArray jsonArray = response.getJSONArray("data");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject =jsonArray.getJSONObject(i);
-                menuList.add(new Menu(jsonObject.getInt("subcategoryid"),jsonObject.getString("categoryname"),jsonObject.getInt("menuid"),jsonObject.getString("name"),jsonObject.getDouble("price"),jsonObject.getString("type")));
-            }
-            for (int i = 0; i < menuList.size(); i++) {
-                Menu menu = menuList.get(i);
-                if (groupData.size() == 0) {
-                    groupData.add(c, j);
-                    c++;
-                    j++;
-                } else {
-                    if (menu.getCategoryname().equalsIgnoreCase(menuList.get(i - 1).getCategoryname())) {
-                        groupData.add(c, j);
-                        c++;
-                        j++;
-                    } else {
-                        j = 0;
-                        groupData.add(c, j);
-                        c++;
-                        j++;
-                    }
-                }
-            }
-            progressBar.setVisibility(View.GONE);
-            menuAdapter.setDataList(menuList,groupData);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
-
-//        String url = "your api endpoint";
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                progressBar.setVisibility(View.GONE);
-//                try {
-//                    if (response.getString("message").equals("success")) {
-//                        //response object
-////                        {
-////                            "data": [
-////                            {
-////                                "subcategoryid": 1,
-////                                    "categoryname": "starter",
-////                                    "menuid": 1,
-////                                    "name": "idli",
-////                                    "price": 50,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 1,
-////                                    "categoryname": "starter",
-////                                    "menuid": 2,
-////                                    "name": "upma",
-////                                    "price": 30,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 2,
-////                                    "categoryname": "liquids",
-////                                    "menuid": 3,
-////                                    "name": "lemon juice",
-////                                    "price": 10,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 2,
-////                                    "categoryname": "liquids",
-////                                    "menuid": 4,
-////                                    "name": "tea",
-////                                    "price": 30,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 3,
-////                                    "categoryname": "main course",
-////                                    "menuid": 5,
-////                                    "name": "dosa",
-////                                    "price": 25,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 3,
-////                                    "categoryname": "main course",
-////                                    "menuid": 6,
-////                                    "name": "masala dosa",
-////                                    "price": 30,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 4,
-////                                    "categoryname": "desert",
-////                                    "menuid": 7,
-////                                    "name": "curd",
-////                                    "price": 10,
-////                                    "type": "veg"
-////                            },
-////                            {
-////                                "subcategoryid": 4,
-////                                    "categoryname": "desert",
-////                                    "menuid": 8,
-////                                    "name": "lassi",
-////                                    "price": 20,
-////                                    "type": "veg"
-////                            }
-////                            ],
-////                            "fullError": null,
-////                                "message": "success"
-////                        }
-//                        JSONArray jsonArray = response.getJSONArray("data");
-//                        for (int i = 0; i < jsonArray.length(); i++) {
-//                            JSONObject jsonObject =jsonArray.getJSONObject(i);
-//                            menuList.add(new Menu(jsonObject.getInt("subcategoryid"),jsonObject.getString("categoryname"),jsonObject.getInt("menuid"),jsonObject.getString("name"),jsonObject.getDouble("price"),jsonObject.getString("type")));
-//                        }
-//                            for (int i = 0; i < menuList.size(); i++) {
-//                                Menu menu = menuList.get(i);
-//                                if (groupData.size() == 0) {
-//                                    groupData.add(c, j);
-//                                    c++;
-//                                    j++;
-//                                } else {
-//                                    if (menu.getCategoryname().equalsIgnoreCase(menuList.get(i - 1).getCategoryname())) {
-//                                        groupData.add(c, j);
-//                                        c++;
-//                                        j++;
-//                                    } else {
-//                                        j = 0;
-//                                        groupData.add(c, j);
-//                                        c++;
-//                                        j++;
-//                                    }
-//                                }
+        String url = "your api endpoint";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressBar.setVisibility(View.GONE);
+                try {
+                    if (response.getString("message").equals("success")) {
+                        //response object
+//                        {
+//                            "data": [
+//                            {
+//                                "subcategoryid": 1,
+//                                    "categoryname": "starter",
+//                                    "menuid": 1,
+//                                    "name": "idli",
+//                                    "price": 50,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 1,
+//                                    "categoryname": "starter",
+//                                    "menuid": 2,
+//                                    "name": "upma",
+//                                    "price": 30,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 2,
+//                                    "categoryname": "liquids",
+//                                    "menuid": 3,
+//                                    "name": "lemon juice",
+//                                    "price": 10,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 2,
+//                                    "categoryname": "liquids",
+//                                    "menuid": 4,
+//                                    "name": "tea",
+//                                    "price": 30,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 3,
+//                                    "categoryname": "main course",
+//                                    "menuid": 5,
+//                                    "name": "dosa",
+//                                    "price": 25,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 3,
+//                                    "categoryname": "main course",
+//                                    "menuid": 6,
+//                                    "name": "masala dosa",
+//                                    "price": 30,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 4,
+//                                    "categoryname": "desert",
+//                                    "menuid": 7,
+//                                    "name": "curd",
+//                                    "price": 10,
+//                                    "type": "veg"
+//                            },
+//                            {
+//                                "subcategoryid": 4,
+//                                    "categoryname": "desert",
+//                                    "menuid": 8,
+//                                    "name": "lassi",
+//                                    "price": 20,
+//                                    "type": "veg"
 //                            }
-//                            progressBar.setVisibility(View.GONE);
-//                        menuAdapter.setDataList(menuList,groupData);
-//
-//
-//                    }
-//                    else
-//                    {
-//                        Log.i("menu res", response.getString("message"));
-//                    }
-//                }catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//
-//            }
-//        });
-//        MySingleton.getInstance(MainActivity.this).addToRequestQue(jsonObjectRequest);
+//                            ],
+//                            "fullError": null,
+//                                "message": "success"
+//                        }
+                        JSONArray jsonArray = response.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject =jsonArray.getJSONObject(i);
+                            menuList.add(new Menu(jsonObject.getInt("subcategoryid"),jsonObject.getString("categoryname"),jsonObject.getInt("menuid"),jsonObject.getString("name"),jsonObject.getDouble("price"),jsonObject.getString("type")));
+                        }
+                            for (int i = 0; i < menuList.size(); i++) {
+                                Menu menu = menuList.get(i);
+                                if (groupData.size() == 0) {
+                                    groupData.add(c, j);
+                                    c++;
+                                    j++;
+                                } else {
+                                    if (menu.getCategoryname().equalsIgnoreCase(menuList.get(i - 1).getCategoryname())) {
+                                        groupData.add(c, j);
+                                        c++;
+                                        j++;
+                                    } else {
+                                        j = 0;
+                                        groupData.add(c, j);
+                                        c++;
+                                        j++;
+                                    }
+                                }
+                            }
+                            progressBar.setVisibility(View.GONE);
+                        menuAdapter.setDataList(menuList,groupData);
+
+
+                    }
+                    else
+                    {
+                        Log.i("menu res", response.getString("message"));
+                    }
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+            }
+        });
+        MySingleton.getInstance(MainActivity.this).addToRequestQue(jsonObjectRequest);
     }
 }
